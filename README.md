@@ -1,6 +1,6 @@
 # quote-event-stream
 
-This service streams quote events using (eventstore)[https://eventstore.com/] to SQL DB for the data analysts to produce reports. This captures user behaviour as they are completing quote steps to help determine the number of products “active” in a quote at any one time.
+This service streams quote events using [eventstore](https://eventstore.com/) to SQL DB for the data analysts to produce reports. This captures user behaviour as they are completing quote steps to help determine the number of products “active” in a quote at any one time.
 
 ## Getting started
 
@@ -9,14 +9,14 @@ These instructions will get you a copy of the project up and running on your loc
 ## Prerequisites
 
 A detailed, step by step guide, of the setup of any external dependencies that a service/project may have, including node, dotnet core, and docker.
-(Event Store)[https://eventstore.com/docs/getting-started/index.html]
+[Event Store](https://eventstore.com/docs/getting-started/index.html)
 
 You have two options of running the Event Store, either a pre-configured connection or local setup:
 
 #### Pre-configured 
 EventStore Connection Details
-- (Web URL)[http://167.99.81.240:2113/]
-- (TCP URL)[tcp://167.99.81.240:1113/]
+- [Web URL](http://167.99.81.240:2113/)
+- [TCP URL](tcp://167.99.81.240:1113/)
 - Username: `xxx`
 - Pass: `xxx`
 
@@ -25,8 +25,8 @@ Install event store `bash local_setup/setup.sh`
 Run the event store `bash local_setup/service_startup.sh`
 
 EventStore connection details
-- (Web URL)[http://127.0.0.1:2113/]
-- (TCP URL)[tcp://127.0.0.1:1113/]
+- [Web URL](http://127.0.0.1:2113/)
+- [TCP URL](tcp://127.0.0.1:1113/)
 - Username: `admin`
 - Pass: `changeit`
 
@@ -51,4 +51,4 @@ Detail any steps required to deploy the service/project to systems other than th
 
 # Source
 
-(EventStore Docs)[https://eventstore.com/docs/]
+[EventStore Docs](https://eventstore.com/docs/)
