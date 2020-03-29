@@ -50,10 +50,12 @@ Step by step instructions on how to get a working version of the project on your
 - Clone repository
 - Run `mvn clean install` 
 - Run `bash local_setup/service_startup.sh` to start mysql in docker (script also sets env vars)
+- Run `RunEventStore` for reading events (WIP)
+- Run `RunWebService` and visit [localhost](http://localhost:8080/) for mapping ORM to mySQL relational DB (WIP)
 
 # Running the tests
 
-An explanation on how to run any automated tests that relate to the project.
+An explanation on how to run any automated tests that relate to the project. (WIP)
 
 # Clean up
 
@@ -62,10 +64,9 @@ remove any unused volumes `docker volume prune`
 
 # Source
 
-[EventStore Docs](https://eventstore.com/docs/)
-
-[DataGrip](https://www.jetbrains.com/datagrip/features/mysql.html)
-
-[mysql Docker](https://hub.docker.com/_/mysql)
-
-[sql instance with Docker](https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee)
+ * [EventStore Docs](https://eventstore.com/docs/)
+ * [Java 8](https://www.java.com/pt_BR/download/faq/java8.xml)
+ * [Spring Boot](https://spring.io/projects/spring-boot)
+ * [DataGrip](https://www.jetbrains.com/datagrip/features/mysql.html)
+ * [mysql Docker](https://hub.docker.com/_/mysql)
+ * [sql instance with Docker](https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee)
