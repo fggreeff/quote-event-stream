@@ -1,0 +1,3 @@
+BEGIN WORK;
+CREATE SCHEMA quote_schema;
+COMMIT;
