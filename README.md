@@ -70,3 +70,41 @@ remove any unused volumes `docker volume prune`
  * [DataGrip](https://www.jetbrains.com/datagrip/features/mysql.html)
  * [mysql Docker](https://hub.docker.com/_/mysql)
  * [sql instance with Docker](https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee)
+
+
+####  Questions
+- What concerns would you have on your SQL with a much larger data set?
+Analysts could run multiple queries that will cause slow down. 
+Some ideas: 
+Identify bottlenecks running SQL Profiler to analyse query usage and execution numbers.
+Running DB optimisation by looking at how analysts use DB for searching / querying.
+Consider fields & tables for indexing
+Consider running overnight batch jobs using DP / Airflow 
+Consider scaling vertically 
+
+- Did you encounter any invalid data?
+I have not yet parsed the data. There will most definitely be invalid data, possibly around data types & data format :) 
+
+- What language did you select to implement this challenge? Why?
+It would have been between Scala and Java. As I am new to the Java world and wanted to learn the language whilst doing this challenge. 
+Java lends itself to OOP and from Java 8 it lends itself more to functional programming. There are very well known streaming tools, such as kafka which are built on the JDK. 
+Giving the benefit of making use of kstreams and kSQL. Java provides Hibernate which is great for ORM mapping and creates a good standard for team members to follow.
+Saying all this, it took me some time to get my head around setting up Hibernate and SpringBoot this weekend. 
+
+- What would you do differently to your implementation if you had more time?
+I'd look at a comparison between using Gson or Jackson Object mapper for mapping the Json to Java Objects.
+I would then look more at the json data to determine what fields I really want to extract and how my objects should reflect the data. 
+I'd include metadata and event version numbers etc. 
+I would look at de-coupling the ETL. Example, I would look at introducing a Kafka broker, as the transformation of data can grow and create a bottleneck.
+A intermediate kafka broker would also act as a buffer, as one micro-service would need to scale and should have a single responsibility. 
+Introduce a DLQ for serialisation issues etc. 
+Add health check for services.
+
+- What technologies would you use run this service?
+Java, Parquet, Docker, K8s, Snowflake
+
+- What testing did (or would) you do, and why?
+I didn't get around to add tests. Basic unit tests for logic & functionality. Including:
+Deserialize event, Filter events, Transform, Pub / Sub functionality. Any DQ & transformation checks should live outside the streaming app and can be tested there
+
+Thank you for the challenge
