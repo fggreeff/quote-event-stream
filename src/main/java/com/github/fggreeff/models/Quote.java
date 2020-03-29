@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "quotes", schema = "dev")
 public class Quote {
-    //TODO: Consider making the id the UID of the quote
+    //TODO: Consider making the id the UID of the quote. (Dependant on index requirement)
     @Id
     @Column(name = "all_quotes_uid")
     private long id;

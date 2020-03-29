@@ -10,4 +10,5 @@ export MYSQL_PASS=password
 export MYSQL_ROOT_PASS=password
 echo "[Done] Setting env vars..."
 
+echo "[Start] Running docker-compose..."
 docker-compose -f docker-compose.yml up -d
