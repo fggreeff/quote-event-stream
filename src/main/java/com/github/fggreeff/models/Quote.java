@@ -19,7 +19,7 @@ public class Quote {
     private long id;
 
     @Column(name = "quote_uid")
-    private String quoteId;
+    private String quoteId; // ENQ_GUID PK?
 
     @Column(name = "event_type")
     private String eventType;

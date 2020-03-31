@@ -1,6 +1,7 @@
 package com.github.fggreeff;
 
 import com.github.fggreeff.stream.ESReadEvent;
+import com.github.fggreeff.stream.EventStoreSubscribeToAll;
 import org.apache.log4j.Logger;
 
 import static com.github.fggreeff.config.Constants.DEFAULT_EVENT_STREAM;
@@ -19,10 +20,9 @@ public class RunEventStore {
 
         // Read the events from a stream
         ESReadEvent esReadEvent = new ESReadEvent();
-        esReadEvent.readEvent(DEFAULT_EVENT_STREAM, 0);
         esReadEvent.readEvent(DEFAULT_EVENT_STREAM, 999);
 
-       // esSubscriber.closeSubscriber();
+//        esSubscriber.closeSubscriber();
         logger.info("Closing app...");
 
     }
