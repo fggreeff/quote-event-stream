@@ -1,0 +1,98 @@
+{
+  "quoteId": "e3ae688a-ecee-48a5-8219-250f222e358d",
+  "products": [
+    {
+      "id": "56fa8392-e700-45d7-9f9d-bd0ffe0f920e",
+      "key": "CommercialCombined",
+      "name": "Business Cover (DR Scheme - Jun2016)",
+      "rates": [
+        {
+          "key": "CommercialCombined\\PublicLiability",
+          "description": "Public Liability",
+          "isOffered": true,
+          "basePremium": 4.58,
+          "loading": null,
+          "discount": null,
+          "ipt": 0.55,
+          "commission": 1.49,
+          "ratingAttributes": {
+            "limit": 2000000,
+            "basePremiumPa": 55,
+            "excess": 250,
+            "employeeCount": 1,
+            "postcode": null,
+            "endorsements": [
+              "EF232",
+              "EF237",
+              "EF240",
+              "EX933"
+            ],
+            "mpaAdjustmentPremium": 0
+          },
+          "ratingInputs": {
+            "key": "CommercialCombined\\PublicLiability",
+            "description": "Public Liability",
+            "iptRate": 0.12,
+            "commissionRate": 0.325,
+            "limit": 2000000,
+            "employeeCount": 1,
+            "postcode": null,
+            "industryId": [
+              "d9e543a4-68fb-445a-a8e1-83fb5674db77",
+              "f8e5aa72-65be-4e0f-8576-9700b1d9fa97"
+            ],
+            "promocode": []
+          },
+          "errors": [],
+          "total": 5.13,
+          "status": "active"
+        },
+        {
+          "key": "CommercialCombined\\OfficeCover",
+          "description": "Office Cover",
+          "isOffered": true,
+          "basePremium": 3.96,
+          "loading": 0.4,
+          "discount": null,
+          "ipt": 0.53,
+          "commission": 1.42,
+          "ratingAttributes": {
+            "fixed_property_limit": 0,
+            "portable_property_limit": 2500,
+            "portable_property_jurisdiction": "Worldwide",
+            "portable_property_excess": 250,
+            "portable_property_base_premium_pa": 47.5,
+            "revenue_protection_limit": 0,
+            "money_assault_base_premium_pa": 0,
+            "mpaAdjustmentPremium": 0
+          },
+          "ratingInputs": {
+            "key": "CommercialCombined\\OfficeCover",
+            "description": "Office cover",
+            "iptRate": 0.12,
+            "commissionRate": 0.325,
+            "fixedPropertyLimit": 0,
+            "portablePropertyLimit": 2500,
+            "portablePropertyJurisdiction": "Worldwide",
+            "revenueProtectionLimit": 0,
+            "moneyAssaultActive": 0,
+            "promocode": [],
+            "industryId": [
+              "d9e543a4-68fb-445a-a8e1-83fb5674db77",
+              "f8e5aa72-65be-4e0f-8576-9700b1d9fa97"
+            ]
+          },
+          "errors": [],
+          "total": 4.89,
+          "status": "active"
+        }
+      ],
+      "agencyProduct": {
+        "guid": "56fa8392-e700-45d7-9f9d-bd0ffe0f920e",
+        "name": "Business Cover (DR Scheme - Jun2016)"
+      },
+      "total": 10.02,
+      "ipt": 1.08
+    }
+  ]
+}

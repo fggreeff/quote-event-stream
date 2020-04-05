@@ -4,10 +4,15 @@ This service streams quote events using [eventstore](https://eventstore.com/) to
 
 ### Architecture
 
-![Architecture](./local_setup/diagrams/architecture.png)
+This POC shows the current architecture
+![Architecture](./local_setup/diagrams/current_architecture.png)
+
+This is a proposed target architecture
+![Architecture](./local_setup/diagrams/target_architecture.png)
 
 ### ERD
 
+Quote started events are added to the quotes table and subsequent quote products updates will update and insert (upsert) the quote_items table 
 ![ERD](./local_setup/diagrams/quote_stream_erd.png)
 
 ## Getting started
@@ -22,6 +27,7 @@ A detailed, step by step guide, of the setup of any external dependencies that a
 [Event Store](https://eventstore.com/docs/getting-started/index.html)
 
 You have two options of running the Event Store, either a pre-configured connection or local setup:
+The pre-configured is already setup, you may skip this step. 
 
 #### Pre-configured 
 EventStore Connection Details
@@ -50,17 +56,24 @@ Step by step instructions on how to get a working version of the project on your
 - Clone repository
 - Run `mvn clean install` 
 - Run `bash local_setup/service_startup.sh` to start mysql in docker (script also sets env vars)
-- Run `RunEventStore` for reading events (WIP)
-- Run `RunWebService` and visit [localhost](http://localhost:8080/) for mapping ORM to mySQL relational DB (WIP)
+- Run `RunEventStore` for reading events 
+
+* NOTE: The following needs to be addressed: 
+- Akka actors and Spring needs to be connected to see the contents of the events in SQL. 
+- This application only takes a single event and should ideally stream all events.
 
 # Running the tests
 
-An explanation on how to run any automated tests that relate to the project. (WIP)
+Run 
+> `mvn test -Ddependency-check.skip=true` 
 
 # Clean up
 
-remove any unused containers `docker system prune -a`
-remove any unused volumes `docker volume prune`
+remove any unused containers 
+> `docker system prune -a`
+
+remove any unused volumes 
+> `docker volume prune`
 
 # Source
 
@@ -70,41 +83,39 @@ remove any unused volumes `docker volume prune`
  * [DataGrip](https://www.jetbrains.com/datagrip/features/mysql.html)
  * [mysql Docker](https://hub.docker.com/_/mysql)
  * [sql instance with Docker](https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee)
-
-
-####  Questions
-- What concerns would you have on your SQL with a much larger data set?
-Analysts could run multiple queries that will cause slow down. 
-Some ideas: 
-Identify bottlenecks running SQL Profiler to analyse query usage and execution numbers.
-Running DB optimisation by looking at how analysts use DB for searching / querying.
-Consider fields & tables for indexing
-Consider running overnight batch jobs using DP / Airflow 
-Consider scaling vertically 
-
-- Did you encounter any invalid data?
-I have not yet parsed the data. There will most definitely be invalid data, possibly around data types & data format :) 
-
-- What language did you select to implement this challenge? Why?
-It would have been between Scala and Java. As I am new to the Java world and wanted to learn the language whilst doing this challenge. 
-Java lends itself to OOP and from Java 8 it lends itself more to functional programming. There are very well known streaming tools, such as kafka which are built on the JDK. 
-Giving the benefit of making use of kstreams and kSQL. Java provides Hibernate which is great for ORM mapping and creates a good standard for team members to follow.
-Saying all this, it took me some time to get my head around setting up Hibernate and SpringBoot this weekend. 
-
-- What would you do differently to your implementation if you had more time?
-I'd look at a comparison between using Gson or Jackson Object mapper for mapping the Json to Java Objects.
-I would then look more at the json data to determine what fields I really want to extract and how my objects should reflect the data. 
-I'd include metadata and event version numbers etc. 
-I would look at de-coupling the ETL. Example, I would look at introducing a Kafka broker, as the transformation of data can grow and create a bottleneck.
-A intermediate kafka broker would also act as a buffer, as one micro-service would need to scale and should have a single responsibility. 
-Introduce a DLQ for serialisation issues etc. 
-Add health check for services.
-
-- What technologies would you use run this service?
-Java, Parquet, Docker, K8s, Snowflake
-
-- What testing did (or would) you do, and why?
-I didn't get around to add tests. Basic unit tests for logic & functionality. Including:
-Deserialize event, Filter events, Transform, Pub / Sub functionality. Any DQ & transformation checks should live outside the streaming app and can be tested there
-
-Thank you for the challenge
+ * [json_schema_2_pojo](http://www.jsonschema2pojo.org/)
+ 
+ 
+ ### Questions
+ What concerns would you have on your SQL with a much larger data set? Analysts could run multiple queries that will cause slow down. 
+ - Some ideas: Identify bottlenecks running SQL Profiler to analyse query usage and execution numbers. Running DB optimisation by looking at how analysts use DB for searching / querying. Consider fields & tables for indexing Consider running overnight batch jobs using DP / Airflow Consider scaling vertically
+ 
+ Did you encounter any invalid data? 
+ - Some inconsistencies in the naming of the data properties, some null values where I'd expect to see data. I suspect there are more around the data types & data format.
+ 
+ What language did you select to implement this challenge? Why? 
+ - It was between Scala and Java. As I am new to the Java world and wanted to learn the language whilst doing this challenge. Java lends itself to OOP and from Java 8 it lends itself more to functional programming. There are very well known streaming tools, such as kafka which are built on the JDK. Giving the benefit of making use of kstreams and kSQL. Java provides Hibernate which is great for ORM mapping and creates a good standard for team members to follow. Saying all this, it took me some time to get my head around setting up Hibernate and SpringBoot. Making use of Akka for the streaming. It is challenging getting akka actors to integrate with spring.
+ 
+ What would you do differently to your implementation if you had more time? 
+ - The target operating model in the architecture diagram would separate the streaming and add a buffer for other applications to do data transformation. I would look at de-coupling the ETL. Example, I would look at introducing a Kafka broker, as the transformation of data can grow and create a bottleneck. A intermediate kafka broker would also act as a buffer, as one micro-service would need to scale and should have a single responsibility. Introduce a DLQ for serialisation issues etc. Add health check for services. I'd include metadata and event version numbers etc.
+ 
+ What technologies would you use run this service? 
+ - Java, Parquet, Docker, K8s, Snowflake
+ 
+ What testing did (or would) you do, and why? 
+ - The json deserialization is tested. 
+ - More tests should include testing the event types and commit the offset manually. 
+ - Some application errors expected: 
+    - consumer errors: invalid JSON, 
+    - Deserialize event (Done)
+    - mapping events to objects (filtering)
+    - transformation errors: valid JSON but exception thrown in processing
+    - producer errors: cannot write to sql 
+    - app cannot connect to ES or sql when starting (heart beat)
+    - app loses connection to ES while running
+    - what gets committed when
+    - message size (too big?)
+    - PK / FK constraints 
+ - (reducing) multiple transactions 
+ - Any DQ & transformation checks should ideally live outside the streaming app and can be tested there
+ 

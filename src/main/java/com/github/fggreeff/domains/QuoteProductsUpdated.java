@@ -1,4 +1,4 @@
-package com.github.fggreeff.processors;
+package com.github.fggreeff.domains;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -11,23 +11,17 @@ import lombok.Getter;
 
 import java.util.List;
 
+// quote_products_updated
 @Data
 @Getter
 @JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Contact {
+public class QuoteProductsUpdated {
 
-    @JsonProperty("industry")
-    private List<Industry> industry = null;
-    @JsonProperty("turnover")
-    private Integer turnover;
-    @JsonProperty("employeeCount")
-    private Integer employeeCount;
-    @JsonProperty("hasActiveInsurance")
-    private Boolean hasActiveInsurance;
-    @JsonProperty("activeInsuranceRenewalDate")
-    private Object activeInsuranceRenewalDate;
-    @JsonProperty("effectiveDate")
-    private String effectiveDate;
+    @JsonProperty("quoteId")
+    public String quoteId;
+    @JsonProperty("products")
+    public List<Product> products = null;
+
 }

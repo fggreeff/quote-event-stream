@@ -2,49 +2,41 @@ package com.github.fggreeff.models;
 
 import javax.persistence.*;
 
+import lombok.Setter;
+
 /**
  * Represents a quote item record in mysql
  */
-
+@Setter
 @Entity
-@Table(name = "quote_items", schema = "dev")
+@Table(name = "quote_items", schema = "quote_schema")
 public class QuoteItems {
 
     @Id
     @Column(name = "all_quote_items_uid")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    private long Id;
 
-    @Column(name = "product_uid")
-    private String productId;
-
+    @Column(name = "product_id")
+    public String productId;
+    @Column(name = "product_key")
+    public String productKey;
     @Column(name = "product_name")
-    private String productName;
+    public String productName;
 
-    @Column(name = "product_cost")
-    private Double cost;
+    @Column(name = "is_offered")
+    public Boolean rateIsOffered;
+    @Column(name = "base_premium")
+    public Float rateBasePremium;
+    @Column(name = "discount")
+    public Object rateDiscount;
+    @Column(name = "total")
+    public Float rateTotal;
+    @Column(name = "status")
+    public String rateStatus;
 
     @ManyToOne
-    @JoinColumn(name = "quote_uid")
+    @JoinColumn(name = "quote_uid") // FK
     private Quote quote;
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
-    }
-
-    public void setQuoteUID(Quote quote) {
-        this.quote = quote;
-    }
 }

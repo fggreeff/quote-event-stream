@@ -1,0 +1,42 @@
+{
+  "id": "e3ae688a-ecee-48a5-8219-250f222e358d",
+  "reference": "d6glop",
+  "contact": {
+    "firstName": "Darron",
+    "lastName": "Mraz",
+    "email": "Oceane_Beatty35@hotmail.com",
+    "phone": "(150) 836-3863 x14249",
+    "businessType": "sole",
+    "businessName": "O'Conner - Hauck",
+    "businessNumber": null,
+    "sicCodes": [],
+    "tradingName": "Gibson LLC",
+    "industry": [
+      {
+        "id": "d9e543a4-68fb-445a-a8e1-83fb5674db77",
+        "value": "d9e543a4-68fb-445a-a8e1-83fb5674db77",
+        "text": "E-Commerce",
+        "label": "E-Commerce",
+        "groupSEO": []
+      },
+      {
+        "id": "f8e5aa72-65be-4e0f-8576-9700b1d9fa97",
+        "value": "f8e5aa72-65be-4e0f-8576-9700b1d9fa97",
+        "text": "Life Style Consultancy",
+        "label": "Life Style Consultancy",
+        "groupSEO": []
+      }
+    ],
+    "turnover": 50000,
+    "employeeCount": 1,
+    "ern": null,
+    "ernExempt": false,
+    "hasActiveInsurance": false,
+    "activeInsuranceRenewalDate": null,
+    "effectiveDate": "2020-03-23T00:00:00.000Z",
+    "ipAddress": "82.8.11.132",
+    "premises": null
+  },
+  "timestamp": "2020-03-23T12:53:32+00:00",
+  "isFirstQuote": true
+}
