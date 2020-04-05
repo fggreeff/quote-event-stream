@@ -22,10 +22,7 @@ public class RunEventStore {
         ESReadEvent esReadEvent = new ESReadEvent();
         esReadEvent.readEvent(DEFAULT_EVENT_STREAM, 997);
 
- //        esSubscriber.closeSubscriber();
+        //        esSubscriber.closeSubscriber();
         logger.info("Closing app...");
     }
 }
-
-
-
