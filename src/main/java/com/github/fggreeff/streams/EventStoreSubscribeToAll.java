@@ -1,4 +1,4 @@
-package com.github.fggreeff.stream;
+package com.github.fggreeff.streams;
 
 import akka.actor.ActorSystem;
 import java.io.Closeable;
@@ -7,9 +7,11 @@ import java.io.IOException;
 import eventstore.j.EsConnection;
 import eventstore.core.IndexedEvent;
 import eventstore.akka.SubscriptionObserver;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.github.fggreeff.connector.EventStoreConnector;
+
+import com.github.fggreeff.connectors.EventStoreConnector;
 
 public class EventStoreSubscribeToAll {
 
@@ -37,7 +39,16 @@ public class EventStoreSubscribeToAll {
                         event.event().data().metadata(),
                         event.event().data().data(),
                         event.event().streamId().streamId());
+
+                final String streamId = event.event().streamId().streamId();
+
+                // skip streams that contain $
+                if (streamId.contains("$")) {
+                    LOGGER.info("skipping " + streamId);
+                    return;
+                }
             }
+
 
             @Override
             public void onError(Throwable e) {
@@ -46,7 +57,7 @@ public class EventStoreSubscribeToAll {
 
             @Override
             public void onClose() {
-                LOGGER.info("Subscription closed...");
+                LOGGER.info("Closing eventstore subscription");
             }
         }, false, null);
     }
@@ -55,13 +66,10 @@ public class EventStoreSubscribeToAll {
         LOGGER.info("Closing subscription...");
         try {
             closeable.close();
-            System.exit(129);
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error("Cannot close eventstore subscription", e.getMessage());
             throw new RuntimeException(e);
         }
+        closeable = null;
     }
 }
-
-
-

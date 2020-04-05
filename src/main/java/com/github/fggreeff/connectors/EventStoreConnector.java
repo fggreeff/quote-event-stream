@@ -1,4 +1,4 @@
-package com.github.fggreeff.connector;
+package com.github.fggreeff.connectors;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;

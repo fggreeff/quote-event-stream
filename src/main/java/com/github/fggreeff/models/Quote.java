@@ -1,49 +1,33 @@
 package com.github.fggreeff.models;
 
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 /**
  * Represents a quote record in mysql
  */
-
+@Setter
 @Entity
-@Table(name = "quotes", schema = "dev")
+@Table(name = "quotes", schema = "quote_schema")
 public class Quote {
-    //TODO: Consider making the id the UID of the quote. (Dependant on index requirement)
-    @Id
-    @Column(name = "all_quotes_uid")
-    private long id;
 
+    @Id
     @Column(name = "quote_uid")
-    private String quoteId; // ENQ_GUID PK?
+    private String quoteId; //  PK
+
+    @Column(name = "reference")
+    private String quoteReference;
+    @Column(name = "timestamp")
+    private String quoteTimestamp;
+    @Column(name = "is_first_quote")
+    private Boolean quoteIsFirstQuote;
 
     @Column(name = "event_type")
     private String eventType;
-
-    @Column(name = "row_create_date", columnDefinition = "TIMESTAMP")
-    private LocalDateTime createdAt;
-
-    public long getId() { return id; }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setQuoteUID(String quoteId) {
-        this.quoteId = quoteId;
-    }
-
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
     // setters and getters
 

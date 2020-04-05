@@ -1,5 +1,4 @@
-package com.github.fggreeff.processors;
-
+package com.github.fggreeff.domains;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,21 +8,25 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 import lombok.Getter;
 
+// quote_products_updated
 @Data
 @Getter
 @JsonNaming(PropertyNamingStrategy.LowerCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class QuoteStarted {
+public class Rate {
 
-    @JsonProperty("id")
-    private String id;
-    @JsonProperty("reference")
-    private String reference;
-    @JsonProperty("contact")
-    private Contact contact;
-    @JsonProperty("timestamp")
-    private String timestamp;
-    @JsonProperty("isFirstQuote")
-    private Boolean isFirstQuote;
+    @JsonProperty("key")
+    public String key;
+    @JsonProperty("isOffered")
+    public Boolean isOffered;
+    @JsonProperty("basePremium")
+    public Float basePremium;
+    @JsonProperty("discount")
+    public Object discount;
+    @JsonProperty("total")
+    public Float total;
+    @JsonProperty("status")
+    public String status;
+
 }

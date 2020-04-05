@@ -1,13 +1,15 @@
-package com.github.fggreeff.stream;
+package com.github.fggreeff.streams;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import com.github.fggreeff.connector.EventStoreConnector;
+import com.github.fggreeff.connectors.EventStoreConnector;
 import eventstore.core.ReadEvent;
 import eventstore.j.ReadEventBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static com.github.fggreeff.akkaspring.SpringExtension.SPRING_EXTENSION_PROVIDER;
 
 public class ESReadEvent {
 
@@ -18,7 +20,8 @@ public class ESReadEvent {
 
         final ActorSystem system = ActorSystem.create();
         final ActorRef connection = EventStoreConnector.getActorRefConnection(system);
-        final ActorRef readResult = system.actorOf(Props.create(ESReadResults.class));
+        final ActorRef readResult = system.actorOf(SPRING_EXTENSION_PROVIDER.get(system).props("ESReadResult").create(ESReadResult.class));
+
 
         final ReadEvent readEvent = new ReadEventBuilder(streamName)
                 .number(eventNumber)
