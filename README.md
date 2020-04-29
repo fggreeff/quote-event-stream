@@ -84,14 +84,12 @@ remove any unused volumes
  * [mysql Docker](https://hub.docker.com/_/mysql)
  * [sql instance with Docker](https://medium.com/@chrischuck35/how-to-create-a-mysql-instance-with-docker-compose-1598f3cc1bee)
  * [json_schema_2_pojo](http://www.jsonschema2pojo.org/)
+ * [akka-spring](https://www.baeldung.com/akka-with-spring)
  
  
  ### Questions
  What concerns would you have on your SQL with a much larger data set? Analysts could run multiple queries that will cause slow down. 
  - Some ideas: Identify bottlenecks running SQL Profiler to analyse query usage and execution numbers. Running DB optimisation by looking at how analysts use DB for searching / querying. Consider fields & tables for indexing Consider running overnight batch jobs using DP / Airflow Consider scaling vertically
- 
- Did you encounter any invalid data? 
- - Some inconsistencies in the naming of the data properties, some null values where I'd expect to see data. I suspect there are more around the data types & data format.
  
  What language did you select to implement this challenge? Why? 
  - It was between Scala and Java. As I am new to the Java world and wanted to learn the language whilst doing this challenge. Java lends itself to OOP and from Java 8 it lends itself more to functional programming. There are very well known streaming tools, such as kafka which are built on the JDK. Giving the benefit of making use of kstreams and kSQL. Java provides Hibernate which is great for ORM mapping and creates a good standard for team members to follow. Saying all this, it took me some time to get my head around setting up Hibernate and SpringBoot. Making use of Akka for the streaming. It is challenging getting akka actors to integrate with spring.
