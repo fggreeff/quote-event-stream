@@ -20,11 +20,15 @@ import org.springframework.stereotype.Component;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ESReadResult extends AbstractActor {
 
-    final LoggingAdapter log = Logging.getLogger(getContext().system(), this);
-    Transformer trans = new Transformer();
+    private final LoggingAdapter log = Logging.getLogger(getContext().system(), this);
+    private Transformer trans = new Transformer();
 
     @Autowired
-    ToMapProcessor mapProcessor;// TODO: This class needs to be instantiated with spring
+    private ToMapProcessor mapProcessor;// TODO: This class needs to be instantiated with spring
+
+//    public ESReadResult(ToMapProcessor mapProcessor) {
+//        this.mapProcessor = mapProcessor;
+//    }
 
     @Override
     public AbstractActor.Receive createReceive() {

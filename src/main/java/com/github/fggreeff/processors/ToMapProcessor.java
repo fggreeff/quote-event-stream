@@ -14,16 +14,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
-@ComponentScan
+//@Configuration
+//@ComponentScan
+@Component
 public class ToMapProcessor {
 
-    @Autowired
-    QuoteRepository quoteRepository;
-
     private static final Logger log = LoggerFactory.getLogger(ToMapProcessor.class);
-    EventToQuote event = new EventToQuote();
+
+    @Autowired
+    private QuoteRepository quoteRepository;
+    private EventToQuote event = new EventToQuote();
 
 
     public void processQuoteStarted(QuoteStarted quoteStarted, String eventType){

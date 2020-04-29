@@ -3,9 +3,11 @@ package com.github.fggreeff;
 import com.github.fggreeff.streams.ESReadEvent;
 import com.github.fggreeff.streams.EventStoreSubscribeToAll;
 import org.apache.log4j.Logger;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import static com.github.fggreeff.config.Constants.DEFAULT_EVENT_STREAM;
 
+//@SpringBootApplication
 public class RunEventStore {
 
     static Logger logger = Logger.getLogger(RunEventStore.class);
