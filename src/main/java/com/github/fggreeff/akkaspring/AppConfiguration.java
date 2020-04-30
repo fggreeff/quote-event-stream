@@ -1,3 +1,4 @@
+/*
 package com.github.fggreeff.akkaspring;
 
 import akka.actor.ActorSystem;
@@ -22,3 +23,4 @@ public class AppConfiguration {
     }
 
 }
+*/
