@@ -2,7 +2,10 @@ package com.github.fggreeff.akkaspring;
 
 import akka.actor.Extension;
 import akka.actor.Props;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /*

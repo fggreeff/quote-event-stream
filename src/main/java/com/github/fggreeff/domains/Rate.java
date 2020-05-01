@@ -23,7 +23,7 @@ public class Rate {
     @JsonProperty("basePremium")
     public Float basePremium;
     @JsonProperty("discount")
-    public Object discount;
+    public String discount;
     @JsonProperty("total")
     public Float total;
     @JsonProperty("status")

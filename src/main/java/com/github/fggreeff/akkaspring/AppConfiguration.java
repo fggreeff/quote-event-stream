@@ -1,7 +1,9 @@
-/*
+
 package com.github.fggreeff.akkaspring;
 
 import akka.actor.ActorSystem;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -15,12 +17,24 @@ public class AppConfiguration {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private SpringAkkaExtension springAkkaExtension;
+
     @Bean
     public ActorSystem actorSystem() {
-        ActorSystem system = ActorSystem.create("akka-spring-demo");
-        SpringExtension.SPRING_EXTENSION_PROVIDER.get(system).initialize(applicationContext);
+//        ActorSystem system = ActorSystem.create("akka-spring-demo");
+//        SpringExtension.SPRING_EXTENSION_PROVIDER.get(system).initialize(applicationContext);
+
+        ActorSystem system = ActorSystem.create("akka-spring-demo", akkaConfiguration());
+        springAkkaExtension.initialize(applicationContext);
         return system;
     }
 
+
+    @Bean
+    public Config akkaConfiguration() {
+        return ConfigFactory.load();
+    }
+
 }
-*/
+

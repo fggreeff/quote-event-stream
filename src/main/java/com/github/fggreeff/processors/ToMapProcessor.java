@@ -1,5 +1,6 @@
 package com.github.fggreeff.processors;
 
+import akka.actor.Extension;
 import com.github.fggreeff.domains.QuoteProductsUpdated;
 import com.github.fggreeff.domains.QuoteStarted;
 import com.github.fggreeff.models.Quote;
@@ -13,14 +14,14 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class ToMapProcessor {
+public class ToMapProcessor implements Extension {
 
     private static final Logger log = LoggerFactory.getLogger(ToMapProcessor.class);
 
     @Autowired
     private QuoteRepository quoteRepository;
-    private EventToQuote event = new EventToQuote();
 
+    private EventToQuote event = new EventToQuote();
 
     public void processQuoteStarted(QuoteStarted quoteStarted, String eventType){
         Quote quote = event.quoteStarted(quoteStarted, eventType);
