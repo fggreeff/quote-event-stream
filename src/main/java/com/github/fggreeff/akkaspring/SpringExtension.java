@@ -1,3 +1,4 @@
+/*
 package com.github.fggreeff.akkaspring;
 
 import akka.actor.AbstractExtensionId;
@@ -29,4 +30,4 @@ public class SpringExtension extends AbstractExtensionId<SpringExtension.SpringE
 
     }
 
-}
+}*/

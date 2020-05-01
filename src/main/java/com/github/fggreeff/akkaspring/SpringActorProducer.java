@@ -6,22 +6,22 @@ import org.springframework.context.ApplicationContext;
 
 public class SpringActorProducer implements IndirectActorProducer {
 
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
+    private final String actorBeanName;
 
-    private String beanActorName;
-
-    public SpringActorProducer(ApplicationContext applicationContext, String beanActorName) {
+    public SpringActorProducer(ApplicationContext applicationContext, String actorBeanName) {
         this.applicationContext = applicationContext;
-        this.beanActorName = beanActorName;
+        this.actorBeanName = actorBeanName;
     }
 
     @Override
     public Actor produce() {
-        return (Actor) applicationContext.getBean(beanActorName);
+        return (Actor) applicationContext.getBean(actorBeanName);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Class<? extends Actor> actorClass() {
-        return (Class<? extends Actor>) applicationContext.getType(beanActorName);
+        return (Class<? extends Actor>) applicationContext.getType(actorBeanName);
     }
 }

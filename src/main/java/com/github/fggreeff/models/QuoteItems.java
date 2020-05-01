@@ -29,7 +29,7 @@ public class QuoteItems {
     @Column(name = "base_premium")
     public Float rateBasePremium;
     @Column(name = "discount")
-    public Object rateDiscount;
+    public String rateDiscount;
     @Column(name = "total")
     public Float rateTotal;
     @Column(name = "status")
