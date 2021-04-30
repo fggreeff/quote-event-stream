@@ -6,7 +6,7 @@
 
     <properties>
         <jackson.version>2.10.3</jackson.version>
-        <spring.version>5.2.4.RELEASE</spring.version>
+        <spring.version>5.2.9.RELEASE</spring.version>
         <akka.version>2.6.1</akka.version>
         <scala.version>2.13</scala.version>
         <jupiter.version>5.5.2</jupiter.version>
